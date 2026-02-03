@@ -13,29 +13,29 @@
     <link rel="icon" href="https://scontent-hkg1-1.xx.fbcdn.net/v/t39.30808-6/463107731_1066760055452304_3150261744189098637_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=p_tT9lANTQEQ7kNvwFZJOfu&_nc_oc=AdncyJnCy2tUgfsBDHIN_PopgtPhousdVn5EHWKT700_CThY8NTxOuafGQzApgSX734&_nc_zt=23&_nc_ht=scontent-hkg1-1.xx&_nc_gid=1ufXYpbrTdGnCjgMNG5M2g&oh=00_Afrb1b3BhKbh36Ng05kLYjjVrXzbqzA_ug7IQnfIJNQmHA&oe=696B99F8" sizes="32x32" type="image/png">
     <script src="../../assets/Q32GCsOlave.js" defer></script>
    <style>
-    body{
+      body{
         padding: 25px;
         font-family: arial;
         width: 80%;
         margin-left: 10%;
         }
 
-        .title {
-            color: white;
-        }
+      .title {
+          color: white;
+      }
 
-        fieldset:nth-child(2) {
-             margin-top: 20px;
-        }
+      fieldset:nth-child(2) {
+        margin-top: 20px;
+      }
 
-        legend {
-            background: orangered;
-            color: yellow;
-            padding: 5px;
-        }
-        label {
-             margin: 5%;
-        }
+      legend {
+        background: orangered;
+        color: yellow;
+        padding: 5px;
+      }
+      label {
+        margin: 5%;
+      }
     </style>
   </head>
   <body>
@@ -50,12 +50,13 @@
         </div>
         <nav class="navbar">
             <a href="../../index.html"> Home </a>
+            <a class="active" href="Q32GCsOlave.html"> Create Account </a>
             <a href="registered.html"> Show Saved Accounts </a>
         </nav>
     </header>
     <section>
       <h1 class="title">Sign-up Page</h1>
-      <form id="dForm" action="registered.html" method="get">
+      <form id="dForm" method="get">
         <fieldset>
           <legend>Iyong <i>Credentials</i></legend><br/>
           <label> Student ID :
@@ -114,10 +115,10 @@
           <legend>Action Buttons</legend>
           <button type="submit"> Accept </button>
           <input type="reset" value=" Clear " />
+          <button type="button" id="viewsignups" onclick="window.location.href='viewsignups.html'">View All Sign-Ups</button>
         </fieldset> 
       </form>
     </section>
-    <script src="q3e3script.js"></script>
   </body>
 </html>
 

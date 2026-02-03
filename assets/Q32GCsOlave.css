@@ -50,6 +50,10 @@ nav {
     color: black
 }
 
+.navbar a:active {
+  color: blue
+}
+
 /* The subnavigation menu */
 .subnav {
   float: left;
