@@ -1,43 +1,80 @@
-// read from the localStorage saved as a string - to see if there are anything saved on the users coomputer
-let acctString = localStorage.getItem("accounts")
-if (!acctString) { accountList = {} }
-else accountList = JSON.parse(acctString)
-const form = document.getElementById("dForm");
+// Q32GCsOlave.js - Form submission handler for Ang Lagablab sign-up form
 
-form.addEventListener("submit", function(e) { // assign an event handler of submit to the form
-    choice = confirm("Bago i-submit, siguraduhing tama ang mga inilagay na impormasyon. \nPindutin ang 'OK' para i-submit o 'Cancel' para suriin ang impormasyon.");
-    if (choice===true) {   
-        const data = new FormData(form);
-        const obj = Object.fromEntries(data.entries()); // get all the data from the form
-
-        accountList[obj.uname] = {};
-        for (let key in obj) { // go through the properties of the object and create another account
-            if (key != "uname") { 
-                accountList[obj.uname][key] = obj[key];
-            }
-        }
-        
-        console.log(accountList) // to check all the account information if it will be saved correctly
-        acctString = JSON.stringify(accountList) // convert object into string, as a requirement of localStorage
-        localStorage.setItem("accounts", acctString) // save on the user's computer
-        form.submit();
-    } else {
-        e.preventDefault(); // cancel the submit if user clicks "Cancel"
-    }
-});
-
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('dForm');
   
-
-// event handler for the reset button instead of onreset on the button itself
-form.addEventListener("reset", function(e) { // 
-  // Ask for confirmation before clearing
-  if (!confirm("Pidutin ang 'OK' para i-clear ang lahat ng inilagay na impormasyon o 'Cancel' para bumalik sa form.")) {
-    e.preventDefault(); // cancel the reset if user clicks "Cancel"
-  }
+  form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+    
+    // Get form values
+    const idnum = document.getElementById('idnum').value;
+    const uname = document.getElementById('uname').value;
+    const dob = document.getElementById('dob').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const glvl = document.getElementById('glvl').value;
+    const club = document.getElementById('club').value;
+    
+    // Get intern/extern value
+    const internRadio = document.querySelector('input[name="Intern"]:checked');
+    const externRadio = document.querySelector('input[name="Extern"]:checked');
+    let inex = '';
+    if (internRadio) inex = 'Intern';
+    if (externRadio) inex = 'Extern';
+    
+    // Get about text
+    const about = document.getElementById('about').value;
+    
+    // Validate required fields
+    if (!idnum || !uname || !dob || !email || !phone || !glvl || !club || !inex) {
+      alert('Pakiusap punan ang lahat ng kinakailangang impormasyon.');
+      return;
+    }
+    
+    // Create user object
+    const userData = {
+      idnum: idnum,
+      uname: uname,
+      dob: dob,
+      email: email,
+      phone: phone,
+      glvl: glvl,
+      club: club,
+      inex: inex,
+      about: about,
+      timestamp: new Date().toISOString()
+    };
+    
+    // Save to localStorage
+    let signups = {};
+    const existingData = localStorage.getItem('clubsignups');
+    
+    if (existingData) {
+      signups = JSON.parse(existingData);
+    }
+    
+    // Use ID number as the key
+    signups[idnum] = userData;
+    
+    // Save back to localStorage
+    localStorage.setItem('clubsignups', JSON.stringify(signups));
+    
+    // Show success message
+    alert('Matagumpay na na-save ang iyong impormasyon!');
+    
+    // Optionally redirect to view page
+    if (confirm('Nais mo bang tingnan ang listahan ng mga sign-up?')) {
+      window.location.href = 'viewsignups.html';
+    } else {
+      form.reset(); // Clear the form
+    }
+  });
+  
+  // Optional: Add validation for phone number (Philippines format)
+  const phoneInput = document.getElementById('phone');
+  phoneInput.addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
+    if (value.length > 11) value = value.slice(0, 11);
+    e.target.value = value;
+  });
 });
-
-// called when user is on the input field
-function focus(ele) {
-    console.log(ele)
-    ele.style.backgroundColor = "yellow"
-}

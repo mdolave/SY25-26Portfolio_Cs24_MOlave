@@ -1,51 +1,142 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Q3 3rd Graded Exercise">
-    <meta name="keywords" content="HTML Forms">
-    <meta name="author" content="M Olave">
-    <title>Sample Form</title>
-    <!-- updated external css link to show how to share it between repository -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../../assets/Q33GCsOlave.css" />
-    <link rel="icon" href="https://scontent-hkg1-1.xx.fbcdn.net/v/t39.30808-6/463107731_1066760055452304_3150261744189098637_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=p_tT9lANTQEQ7kNvwFZJOfu&_nc_oc=AdncyJnCy2tUgfsBDHIN_PopgtPhousdVn5EHWKT700_CThY8NTxOuafGQzApgSX734&_nc_zt=23&_nc_ht=scontent-hkg1-1.xx&_nc_gid=1ufXYpbrTdGnCjgMNG5M2g&oh=00_Afrb1b3BhKbh36Ng05kLYjjVrXzbqzA_ug7IQnfIJNQmHA&oe=696B99F8" sizes="32x32" type="image/png">
-    <script src="../../assets/Q33GCsOlave.js" defer></script>
-  </head>
-  <body>
-    <header>
-        <div>
-            <img src="https://scontent-hkg1-1.xx.fbcdn.net/v/t39.30808-6/463107731_1066760055452304_3150261744189098637_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=p_tT9lANTQEQ7kNvwFZJOfu&_nc_oc=AdncyJnCy2tUgfsBDHIN_PopgtPhousdVn5EHWKT700_CThY8NTxOuafGQzApgSX734&_nc_zt=23&_nc_ht=scontent-hkg1-1.xx&_nc_gid=1ufXYpbrTdGnCjgMNG5M2g&oh=00_Afrb1b3BhKbh36Ng05kLYjjVrXzbqzA_ug7IQnfIJNQmHA&oe=696B99F8" alt="lgblb logo" 
-               title="The Official Logo" width="50px" height="75px" />
-            <h1>
-                Ang Lagablab Application Form    
-            </h1>
-            <h3>by Miguel Olave </h3>
-        </div>
-        <nav class="navbar">
-            <a href="../../index.html"> Home </a>
-            <a class="active" href="Q32GCsOlave.html"> Create Account </a>
-            <a href="registered.html"> Show Saved Accounts </a>
-        </nav>
-    </header>
-    <section>
-      <h1 class="title">View All Sign-ups</h1>
-      <form id="signups2view" method="get">
-        <fieldset>
-          <legend>Select Your Club</legend><br/>
-          <label for="club">Baitang :
-            <select name="club" id="club" required>
-              <option value="tom">Tomorrow</option>
-              <option value="aksis">Aksiyon Iskolar</option>
-              <option value="ekspo">Exposure</option>
-              <option value="likha">Likha</option>
-              <option value="mun">Pisay-MUN</option>
-              <option value="solace">Solace</option>
-              <option value="all">All</option>
-            </select>
-          </label><br/><br/>
-        </fieldset>
-      </form>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Q3 2nd Graded Exercise – View Sign‑Ups">
+  <meta name="keywords" content="HTML Forms, LocalStorage">
+  <meta name="author" content="M Olave">
+  <title>View Sign‑Ups · Ang Lagablab</title>
+  <!-- Font Awesome & Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Inter:wght@300;500;600&display=swap" rel="stylesheet">
+  <!-- External CSS (shared with sign‑up form) -->
+  <link rel="stylesheet" href="../../assets/Q33GCsOlave.css">
+  <link rel="icon" href="https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/463107731_1066760055452304_3150261744189098637_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHslAaMRofJ-Cn0dlGFrRiUtKNvtIMhguG0o2-0gyGC4VTb12cWvioANnfSv7DYm7hPJgFEoPXXM_Fl7iuSLlak&_nc_ohc=1DK0O1V2eFAQ7kNvwHm11Lc&_nc_oc=AdmNjTW63etAHOjpkNRTCJhbMkMhJ3DgWwpRcT55bEXSRrdiK2Dkdrk2vmnU0Q34XIc&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=J1rC3ws0PT8m3L9D4DMs5A&oh=00_Aft9DJWC1aFyxaBs52UGUtXGQm5_0IRhEhbbTT_VsdcNHg&oe=6999BE78" sizes="32x32" type="image/png">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <img src="https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/463107731_1066760055452304_3150261744189098637_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHslAaMRofJ-Cn0dlGFrRiUtKNvtIMhguG0o2-0gyGC4VTb12cWvioANnfSv7DYm7hPJgFEoPXXM_Fl7iuSLlak&_nc_ohc=1DK0O1V2eFAQ7kNvwHm11Lc&_nc_oc=AdmNjTW63etAHOjpkNRTCJhbMkMhJ3DgWwpRcT55bEXSRrdiK2Dkdrk2vmnU0Q34XIc&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=J1rC3ws0PT8m3L9D4DMs5A&oh=00_Aft9DJWC1aFyxaBs52UGUtXGQm5_0IRhEhbbTT_VsdcNHg&oe=6999BE78" alt="Lagablab Logo" width="50" height="75">
+      <div>
+        <h1>Ang Lagablab · Student Sign‑Ups</h1>
+        <h3>by Miguel Olave</h3>
+      </div>
+    </div>
+    <nav class="navbar">
+      <a href="../../index.html">Home</a>
+      <a href="Q32GCsOlave.html">Create Account</a>
+    </nav>
+  </header>
+
+  <main>
+    <select id="clubs" onchange="showClub(this.value)">
+      <option disabled selected value>— pumili ng klub —</option>
+      <option value="All">Lahat</option>
+      <option value="tom">Tomorrow</option>
+      <option value="aksis">Aksyon Iskolar</option>
+      <option value="ekspo">Exposure</option>
+      <option value="likha">Likha</option>
+      <option value="mun">Pisay-MUN</option>
+      <option value="solace">Solace</option>
+    </select>
+
+    <section class="table-section">
+      <table id="results">
+        <!-- filled dynamically -->
+      </table>
     </section>
-  </body>
+  </main>
+
+  <script>
+    (function() {
+      // Navigation buttons (if any) – here we use links in navbar, so no extra buttons needed.
+      // But we keep the filter functionality.
+      const signupBtn = document.getElementById('signup');
+      const homeBtn = document.getElementById('home');
+      if (signupBtn) {
+        signupBtn.onclick = () => window.location.href = 'Q32GCsOlave.html';
+      }
+      if (homeBtn) {
+        homeBtn.onclick = () => window.location.href = '../../index.html';
+      }
+      // Main function to display filtered club members
+      window.showClub = function(theClub) {
+        let totalSignUp = 0;
+        const signupString = localStorage.getItem('clubsignups');
+        const results = document.getElementById('results');
+        const tSignUps = document.getElementById('tSignUps');
+        let rowString = '';
+
+        if (!signupString) {
+          rowString = '<tr><td colspan="7" style="text-align:center; padding:2rem;">Wala pang nakitang sign-up.</td></tr>';
+          results.innerHTML = rowString;
+          tSignUps.innerHTML = '0';
+          return;
+        }
+
+        const signupsList = JSON.parse(signupString);
+        
+        // Build table header
+        let header = '<tr><th>Klub</th><th>ID</th><th>Pangalan</th><th>Baitang</th><th>Email</th><th>Telepono</th><th>Intern/Extern</th></tr>';
+        
+        // Build rows for filtered data
+        for (let key in signupsList) {
+          const entry = signupsList[key];
+          
+          // Match club based on selection
+          if (theClub === 'All' || entry.club === theClub) {
+            // Format grade for display
+            let gradeDisplay = '';
+            switch(entry.glvl) {
+              case 'g7': gradeDisplay = 'Ika-7'; break;
+              case 'g8': gradeDisplay = 'Ika-8'; break;
+              case 'g9': gradeDisplay = 'Ika-9'; break;
+              case 'g10': gradeDisplay = 'Ika-10'; break;
+              case 'g11': gradeDisplay = 'Ika-11'; break;
+              case 'g12': gradeDisplay = 'Ika-12'; break;
+              default: gradeDisplay = entry.glvl || '—';
+            }
+            
+            // Format club for display
+            let clubDisplay = '';
+            switch(entry.club) {
+              case 'tom': clubDisplay = 'Tomorrow'; break;
+              case 'aksis': clubDisplay = 'Aksyon Iskolar'; break;
+              case 'ekspo': clubDisplay = 'Exposure'; break;
+              case 'likha': clubDisplay = 'Likha'; break;
+              case 'mun': clubDisplay = 'Pisay-MUN'; break;
+              case 'solace': clubDisplay = 'Solace'; break;
+              default: clubDisplay = entry.club || '—';
+            }
+            
+            // Get intern/extern value
+            let inex = entry.inex || '—';
+            
+            rowString += '<tr>';
+            rowString += '<td>' + clubDisplay + '</td>';
+            rowString += '<td>' + key + '</td>';
+            rowString += '<td>' + (entry.uname || '—') + '</td>';
+            rowString += '<td>' + gradeDisplay + '</td>';
+            rowString += '<td>' + (entry.email || '—') + '</td>';
+            rowString += '<td>' + (entry.phone || '—') + '</td>';
+            rowString += '<td>' + inex + '</td></tr>';
+            totalSignUp++;
+          }
+        }
+
+        if (rowString) {
+          results.innerHTML = header + rowString;
+          tSignUps.innerHTML = totalSignUp;
+        } else {
+          results.innerHTML = '<tr><td colspan="7" style="text-align:center; padding:2rem;">Walang sign-up para sa klub na ito.</td></tr>';
+          tSignUps.innerHTML = '0';
+        }
+    };
+
+    // Initial display (show all)
+    showClub('All');
+  })();
+</script>
+</body>
+</html>

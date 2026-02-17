@@ -1,33 +1,191 @@
+/* ========== RESET & BASE ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    background-image: url('https://i.pinimg.com/originals/fe/1f/31/fe1f314de7f9db961da0f82d2096f37d.gif');
-    background-repeat: no-repeat;
-    background-size: cover;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: url('https://media1.tenor.com/m/NCrc5qKHcjsAAAAC/flowers-field.gif') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #2e3b2e;
+  position: relative;
+  line-height: 1.6;
 }
+
+/* Soft, semi-transparent overlay – formal yet warm */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(250, 245, 235, 0.65);
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ========== BANNER ========== */
 .banner {
-    background-color:blanchedalmond;
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: brown;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+  width: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(140, 120, 100, 0.2);
+  padding: 2rem 1rem;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 2;
 }
 
-h2 {
-    font-size: 3rem;
-    margin-left: 1rem;
-    color: white;
+.banner h1 {
+  font-family: 'Lora', 'Times New Roman', serif;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 500;
+  color: #3f5a3f;
+  letter-spacing: -0.02em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.03);
+  margin: 0;
 }
 
-ol {
-    font-size: 3rem;
-    margin-left: 5rem;
-    color: white
+/* ========== DROPDOWN SECTIONS ========== */
+/* Wrap each quarter in a <details> element */
+details {
+  width: 90%;
+  max-width: 800px;
+  margin: 2rem auto;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(180, 160, 140, 0.3);
+  border-radius: 20px;
+  padding: 0.5rem 1.5rem;
+  box-shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.1);
+  transition: all 0.25s ease;
+  position: relative;
+  z-index: 2;
 }
 
+details:hover {
+  background: rgba(255, 255, 255, 0.75);
+  border-color: rgba(150, 130, 110, 0.5);
+  box-shadow: 0 15px 30px -8px rgba(80, 60, 40, 0.15);
+}
+
+/* Summary – acts as the clickable header */
+summary {
+  font-family: 'Lora', serif;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #4a6b4a;
+  padding: 1rem 0.5rem;
+  cursor: pointer;
+  list-style: none; /* remove default triangle */
+  position: relative;
+  transition: color 0.2s;
+  border-bottom: 2px dashed transparent;
+}
+
+summary:hover {
+  color: #2f4d2f;
+}
+
+/* Custom dropdown indicator (subtle Ghibli leaf) */
+summary::after {
+  content: '⬇';
+  font-size: 1.8rem;
+  color: #8faa8f;
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
+}
+
+details[open] summary::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* Remove default marker for Safari */
+summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Content inside details (the list) */
+details ol {
+  margin: 0.5rem 0 1.5rem 2rem;
+  padding: 0;
+  font-size: 1.3rem;
+  color: #3a4a3a;
+}
+
+details li {
+  margin-bottom: 0.75rem;
+  font-weight: 400;
+  list-style-type: none;
+  position: relative;
+  padding-left: 2rem;
+}
+
+/* Decorative bullet – tiny acorn / soot sprite inspired */
+details li::before {
+  content: '⚬';
+  font-size: 1.8rem;
+  color: #b0c4a2;
+  position: absolute;
+  left: -0.2rem;
+  top: -0.4rem;
+  opacity: 0.8;
+}
+
+/* Links – refined and elegant */
 a {
-    color: lightblue
+  text-decoration: none;
+  color: #4f6252;
+  background: rgba(245, 240, 230, 0.6);
+  padding: 0.3rem 1.2rem;
+  border-radius: 30px;
+  border: 1px solid rgba(160, 140, 120, 0.3);
+  transition: all 0.2s;
+  display: inline-block;
+  font-weight: 500;
+  backdrop-filter: blur(4px);
+}
+
+a:hover {
+  background: rgba(235, 225, 210, 0.9);
+  border-color: #9bb592;
+  color: #2a402a;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transform: translateY(-1px);
+}
+
+a:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+/* ========== RESPONSIVE TWEAKS ========== */
+@media (max-width: 600px) {
+  details {
+    width: 95%;
+    padding: 0.5rem 1rem;
+  }
+  summary {
+    font-size: 1.8rem;
+    padding-right: 2.5rem; /* space for arrow */
+  }
+  details ol {
+    font-size: 1.1rem;
+    margin-left: 0.5rem;
+  }
+  a {
+    padding: 0.2rem 1rem;
+  }
 }

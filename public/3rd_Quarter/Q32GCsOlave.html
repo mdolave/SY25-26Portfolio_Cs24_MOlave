@@ -1,84 +1,61 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Q3 2nd Graded Exercise">
-    <meta name="keywords" content="HTML Forms">
-    <meta name="author" content="M Olave">
-    <title>Sample Form</title>
-    <!-- updated external css link to show how to share it between repository -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../../assets/Q32GCsOlave.css" />
-    <link rel="icon" href="https://scontent-hkg1-1.xx.fbcdn.net/v/t39.30808-6/463107731_1066760055452304_3150261744189098637_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=p_tT9lANTQEQ7kNvwFZJOfu&_nc_oc=AdncyJnCy2tUgfsBDHIN_PopgtPhousdVn5EHWKT700_CThY8NTxOuafGQzApgSX734&_nc_zt=23&_nc_ht=scontent-hkg1-1.xx&_nc_gid=1ufXYpbrTdGnCjgMNG5M2g&oh=00_Afrb1b3BhKbh36Ng05kLYjjVrXzbqzA_ug7IQnfIJNQmHA&oe=696B99F8" sizes="32x32" type="image/png">
-    <script src="../../assets/Q32GCsOlave.js" defer></script>
-   <style>
-      body{
-        padding: 25px;
-        font-family: arial;
-        width: 80%;
-        margin-left: 10%;
-        }
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Q3 2nd Graded Exercise">
+  <meta name="keywords" content="HTML Forms">
+  <meta name="author" content="M Olave">
+  <title>Ang Lagablab · Sign Up</title>
+  <!-- Font Awesome & Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Inter:wght@300;500;600&display=swap" rel="stylesheet">
+  <!-- External CSS (updated) -->
+  <link rel="stylesheet" href="../../assets/Q32GCsOlave.css">
+  <link rel="icon" href="https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/463107731_1066760055452304_3150261744189098637_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHslAaMRofJ-Cn0dlGFrRiUtKNvtIMhguG0o2-0gyGC4VTb12cWvioANnfSv7DYm7hPJgFEoPXXM_Fl7iuSLlak&_nc_ohc=1DK0O1V2eFAQ7kNvwHm11Lc&_nc_oc=AdmNjTW63etAHOjpkNRTCJhbMkMhJ3DgWwpRcT55bEXSRrdiK2Dkdrk2vmnU0Q34XIc&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=J1rC3ws0PT8m3L9D4DMs5A&oh=00_Aft9DJWC1aFyxaBs52UGUtXGQm5_0IRhEhbbTT_VsdcNHg&oe=6999BE78" sizes="32x32" type="image/png">
+  <script src="../../assets/Q32GCsOlave.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <img src="https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/463107731_1066760055452304_3150261744189098637_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHslAaMRofJ-Cn0dlGFrRiUtKNvtIMhguG0o2-0gyGC4VTb12cWvioANnfSv7DYm7hPJgFEoPXXM_Fl7iuSLlak&_nc_ohc=1DK0O1V2eFAQ7kNvwHm11Lc&_nc_oc=AdmNjTW63etAHOjpkNRTCJhbMkMhJ3DgWwpRcT55bEXSRrdiK2Dkdrk2vmnU0Q34XIc&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=J1rC3ws0PT8m3L9D4DMs5A&oh=00_Aft9DJWC1aFyxaBs52UGUtXGQm5_0IRhEhbbTT_VsdcNHg&oe=6999BE78" alt="Lagablab Logo" width="50" height="75">
+      <div>
+        <h1>Ang Lagablab Application Form</h1>
+        <h3>by Miguel Olave</h3>
+      </div>
+    </div>
+    <nav class="navbar">
+      <a href="../../index.html">Home</a>
+      <a class="active" href="Q32GCsOlave.html">Create Account</a>
+    </nav>
+  </header>
 
-      .title {
-          color: white;
-      }
-
-      fieldset:nth-child(2) {
-        margin-top: 20px;
-      }
-
-      legend {
-        background: orangered;
-        color: yellow;
-        padding: 5px;
-      }
-      label {
-        margin: 5%;
-      }
-    </style>
-  </head>
-  <body>
-     <header>
-        <div>
-            <img src="https://scontent-hkg1-1.xx.fbcdn.net/v/t39.30808-6/463107731_1066760055452304_3150261744189098637_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=p_tT9lANTQEQ7kNvwFZJOfu&_nc_oc=AdncyJnCy2tUgfsBDHIN_PopgtPhousdVn5EHWKT700_CThY8NTxOuafGQzApgSX734&_nc_zt=23&_nc_ht=scontent-hkg1-1.xx&_nc_gid=1ufXYpbrTdGnCjgMNG5M2g&oh=00_Afrb1b3BhKbh36Ng05kLYjjVrXzbqzA_ug7IQnfIJNQmHA&oe=696B99F8" alt="lgblb logo" 
-               title="The Official Logo" width="50px" height="75px" />
-            <h1>
-                Ang Lagablab Application Form    
-            </h1>
-            <h3>by Miguel Olave </h3>
-        </div>
-        <nav class="navbar">
-            <a href="../../index.html"> Home </a>
-            <a class="active" href="Q32GCsOlave.html"> Create Account </a>
-            <a href="registered.html"> Show Saved Accounts </a>
-        </nav>
-    </header>
-    <section>
-      <h1 class="title">Sign-up Page</h1>
+  <main>
+    <section class="form-section">
+      <h1 class="page-title">Sign-up Page</h1>
       <form id="dForm" method="get">
         <fieldset>
-          <legend>Iyong <i>Credentials</i></legend><br/>
-          <label> Student ID :
+          <legend>Iyong <i>Credentials</i></legend>
+          <label>Student ID:
             <input type="number" name="idnum" id="idnum" required>
-          </label><br/><br/>
-          <label> Pangalan: 
+          </label>
+          <label>Pangalan:
             <input type="text" name="uname" id="uname" required>
-          </label><br/><br/>
-          <label> Petsa ng Kaarawan :
+          </label>
+          <label>Petsa ng Kaarawan:
             <input type="date" name="dob" id="dob" required>
-          </label><br/><br/>
-          <label> Email Address :
+          </label>
+          <label>Email Address:
             <input type="email" name="email" id="email" required>
-          </label><br/><br/>
+          </label>
         </fieldset>
 
         <fieldset>
           <legend>Personal na Impormasyon</legend>
-          <label> Phone Number :
+          <label>Phone Number:
             <input type="tel" name="phone" id="phone" required>
-          </label> <br/><br/>
-          <label for="glvl">Baitang :
+          </label>
+          <label for="glvl">Baitang:
             <select name="glvl" id="glvl" required>
               <option value="g7">Ika-7 na Baitang</option>
               <option value="g8">Ika-8 na Baitang</option>
@@ -87,12 +64,12 @@
               <option value="g11">Ika-11 na Baitang</option>
               <option value="g12">Ika-12 na Baitang</option>
             </select>
-          </label><br/><br/>
-          <label> Intern / Extern :
-            <input type="radio" name="Intern" value="Intern" /> Intern
-            <input type="radio" name="Extern" value="Male" /> Extern
-          </label><br/><br/>
-          <label> Club na Ineendorso ng Ang Lagablab :
+          </label>
+          <label class="radio-group">Intern / Extern:
+            <span><input type="radio" name="Intern" value="Intern"> Intern</span>
+            <span><input type="radio" name="Extern" value="Extern"> Extern</span>
+          </label>
+          <label>Club na Ineendorso ng Ang Lagablab:
             <select name="club" id="club" required>
               <option value="tom">Tomorrow</option>
               <option value="aksis">Aksyon Iskolar</option>
@@ -101,24 +78,25 @@
               <option value="mun">Pisay-MUN</option>
               <option value="solace">Solace</option>
             </select>
-          </label><br/><br/>
+          </label>
         </fieldset>
+
         <fieldset>
           <legend>Maikling Sanaysay</legend>
-          <label> Mangyaring magbigay kung bakit mo naisipan sumali sa pahayagang ito:  
-            <textarea name="about" id="about">
-              
-            </textarea>
-          </label><br/><br/>
+          <label>Mangyaring magbigay kung bakit mo naisipan sumali sa pahayagang ito:
+            <textarea name="about" id="about"></textarea>
+          </label>
         </fieldset>
-        <fieldset>
+
+        <fieldset class="actions">
           <legend>Action Buttons</legend>
-          <button type="submit"> Accept </button>
-          <input type="reset" value=" Clear " />
+          <button type="submit">Accept</button>
+          <input type="reset" value="Clear">
           <button type="button" id="viewsignups" onclick="window.location.href='viewsignups.html'">View All Sign-Ups</button>
-        </fieldset> 
+        </fieldset>
       </form>
     </section>
-  </body>
+  </main>
+</body>
 </html>
 
