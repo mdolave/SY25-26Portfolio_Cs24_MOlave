@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Movie Rating - Ghibli Theme">
+  <meta name="keywords" content="Movie Ratings, CRUD, LocalStorage">
+  <meta name="author" content="Miguel Olave">
+  <title>Ghibli Movie Ratings</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Inter:wght@300;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/Q41GCsOlave.css">
+  <link rel="icon" href="https://cdn.dribbble.com/userupload/20803310/file/original-d98d5810be8b445caf799ec4283a3b94.jpg" sizes="32x32" type="image/png">
+  <script src="../../assets/Q41GCsOlave.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <img src="https://cdn.dribbble.com/userupload/20803310/file/original-d98d5810be8b445caf799ec4283a3b94.jpg" alt="movie icon" width="50" height="75">
+      <div>
+        <h1>Movie Ratings</h1>
+        <h3>by Miguel Olave</h3>
+      </div>
+    </div>
+    <nav class="navbar">
+      <a href="../../index.html">Home</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="form-section">
+      <h1 class="page-title">Add a Movie</h1>
+      <form id="movieForm">
+        <fieldset>
+          <legend>Movie <i>Details</i></legend>
+          
+          <label>Movie Title:
+            <input type="text" name="title" id="title" placeholder="e.g., Spirited Away" required>
+          </label>
+          
+          <label>Year:
+            <input type="number" name="year" id="year" min="1900" max="2026" placeholder="2001" required>
+          </label>
+          
+          <label>Genre:
+            <select name="genre" id="genre" required>
+              <option value="">Select a genre</option>
+              <option value="Fantasy">Fantasy</option>
+              <option value="Adventure">Adventure</option>
+              <option value="Drama">Drama</option>
+              <option value="Family">Family</option>
+              <option value="Romance">Romance</option>
+              <option value="Slice of Life">Slice of Life</option>
+            </select>
+          </label>
+          
+          <label>Rating:</label>
+          <div class="star-rating" id="starRating">
+            <i class="fa fa-star-o" data-rating="1"></i>
+            <i class="fa fa-star-o" data-rating="2"></i>
+            <i class="fa fa-star-o" data-rating="3"></i>
+            <i class="fa fa-star-o" data-rating="4"></i>
+            <i class="fa fa-star-o" data-rating="5"></i>
+          </div>
+          <input type="hidden" name="rating" id="rating" value="0">
+        </fieldset>
+
+        <div class="action-buttons">
+          <button type="submit" id="addMovie">Add Movie</button>
+          <button type="button" id="clearForm">Clear</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="movie-list-section">
+      <h2 class="section-title">Movie Collection</h2>
+      <div id="movieList" class="movie-grid">
+        <!-- Movies will be dynamically added here -->
+      </div>
+    </section>
+  </main>
+</body>
+</html>
