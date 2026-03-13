@@ -400,3 +400,39 @@ button:active {
     grid-template-columns: 1fr;
   }
 }
+
+.delete-btn {
+    background: #d32f2f;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    border: 1px solid #b71c1c;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.delete-btn:hover {
+    background: #b71c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.delete-btn i {
+    font-size: 0.9rem;
+}
+
+.movie-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-section {
+    max-width: 1200px;
+}

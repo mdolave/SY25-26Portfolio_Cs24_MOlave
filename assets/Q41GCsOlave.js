@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const ratingInput = document.getElementById('rating');
     const starRating = document.getElementById('starRating');
     const stars = starRating.querySelectorAll('i');
-    const addMovieBtn = document.getElementById('addMovie');
     const clearFormBtn = document.getElementById('clearForm');
     const movieList = document.getElementById('movieList');
 
@@ -17,13 +16,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Star Rating Interaction
     stars.forEach(star => {
-        // Click event
         star.addEventListener('click', function() {
             const rating = parseInt(this.getAttribute('data-rating'));
             setRating(rating);
         });
 
-        // Hover events
         star.addEventListener('mouseenter', function() {
             const rating = parseInt(this.getAttribute('data-rating'));
             highlightStars(rating);
@@ -45,11 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function highlightStars(rating) {
         stars.forEach((star, index) => {
             const starRating = index + 1;
-            if (starRating <= rating) {
-                star.className = 'fa fa-star';
-            } else {
-                star.className = 'fa fa-star-o';
-            }
+            star.className = starRating <= rating ? 'fa fa-star' : 'fa fa-star-o';
         });
     }
 
@@ -59,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setRating(0);
     });
 
-    // Add Movie
+    // Add or Update Movie
     movieForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
@@ -67,47 +60,85 @@ document.addEventListener('DOMContentLoaded', function() {
         const title = titleInput.value.trim();
         const year = yearInput.value.trim();
         const genre = genreSelect.value;
-        const rating = ratingInput.value;
+        const rating = parseInt(ratingInput.value);
 
-        if (!title || !year || !genre || rating === '0') {
+        if (!title || !year || !genre || rating === 0) {
             alert('Please fill in all fields and select a rating!');
             return;
         }
 
-        // Create movie object
-        const movie = {
-            id: Date.now(),
-            title: title,
-            year: year,
-            genre: genre,
-            rating: parseInt(rating)
-        };
+        // Get existing movies
+        let movies = JSON.parse(localStorage.getItem('movies')) || [];
 
-        // Save to localStorage
-        saveMovie(movie);
+        // Check if movie with same title already exists (case-insensitive)
+        const existingIndex = movies.findIndex(m => m.title.toLowerCase() === title.toLowerCase());
 
-        // Clear form
+        if (existingIndex !== -1) {
+            // --- UPDATE EXISTING MOVIE ---
+            const oldMovie = movies[existingIndex];
+            // Average the new rating with the old one, round to nearest integer
+            const avgRating = Math.round((oldMovie.rating + rating) / 2);
+            // Update year, genre, and averaged rating, keep same id
+            movies[existingIndex] = {
+                ...oldMovie,
+                year: year,
+                genre: genre,
+                rating: avgRating
+            };
+            alert(`Movie "${title}" updated. New average rating: ${avgRating}`);
+        } else {
+            // --- ADD NEW MOVIE ---
+            const newMovie = {
+                id: Date.now(),      // unique id based on timestamp
+                title: title,
+                year: year,
+                genre: genre,
+                rating: rating
+            };
+            movies.push(newMovie);
+        }
+
+        // Save updated array to localStorage
+        localStorage.setItem('movies', JSON.stringify(movies));
+
+        // Clear form and refresh movie list
         movieForm.reset();
         setRating(0);
-
-        // Reload movie list
         loadMovies();
     });
 
-    // Function to save movie to localStorage
-    function saveMovie(movie) {
+    // Delete movie (called via event delegation)
+    function deleteMovie(movieId) {
         let movies = JSON.parse(localStorage.getItem('movies')) || [];
-        movies.push(movie);
+        // Filter out the movie with the matching id
+        movies = movies.filter(m => m.id != movieId);  // use != to compare number with string if needed
         localStorage.setItem('movies', JSON.stringify(movies));
+        loadMovies(); // re-display the list
     }
 
-    // Function to load movies from localStorage
+    // Event delegation for delete buttons (attached to the container)
+    movieList.addEventListener('click', function(e) {
+        const deleteBtn = e.target.closest('.delete-btn');
+        if (deleteBtn) {
+            // Get the movie id from the button's parent card (or from button's data-id)
+            const movieCard = deleteBtn.closest('.movie-card');
+            if (movieCard) {
+                const movieId = movieCard.dataset.id;
+                // Show confirmation dialog
+                if (confirm('Are you sure you want to delete this movie?')) {
+                    deleteMovie(movieId);
+                }
+            }
+        }
+    });
+
+    // Function to load movies from localStorage and display
     function loadMovies() {
         const movies = JSON.parse(localStorage.getItem('movies')) || [];
         displayMovies(movies);
     }
 
-    // Function to display movies
+    // Function to display movies in the grid
     function displayMovies(movies) {
         if (movies.length === 0) {
             movieList.innerHTML = '<div class="empty-state">No movies added yet. Add your first Ghibli movie!</div>';
@@ -121,15 +152,12 @@ document.addEventListener('DOMContentLoaded', function() {
         movieList.innerHTML = movieHTML;
     }
 
-    // Function to create movie card HTML
+    // Function to create HTML for one movie card (includes Delete button)
     function createMovieCard(movie) {
+        // Generate star icons based on rating
         const stars = [];
         for (let i = 1; i <= 5; i++) {
-            if (i <= movie.rating) {
-                stars.push('<i class="fa fa-star"></i>');
-            } else {
-                stars.push('<i class="fa fa-star-o"></i>');
-            }
+            stars.push(i <= movie.rating ? '<i class="fa fa-star"></i>' : '<i class="fa fa-star-o"></i>');
         }
 
         return `
@@ -140,23 +168,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="movie-rating">
                     ${stars.join('')}
                 </div>
+                <button class="delete-btn" data-id="${movie.id}">
+                    <i class="fa fa-trash"></i> Delete
+                </button>
             </div>
         `;
     }
 
-    // Optional: Add sample data for demonstration
-    function addSampleMovies() {
-        const sampleMovies = [
-            { id: 1, title: 'Spirited Away', year: '2001', genre: 'Fantasy', rating: 5 },
-            { id: 2, title: 'My Neighbor Totoro', year: '1988', genre: 'Family', rating: 5 },
-            { id: 3, title: 'Howl\'s Moving Castle', year: '2004', genre: 'Fantasy', rating: 4 }
-        ];
-        
-        if (!localStorage.getItem('movies')) {
-            localStorage.setItem('movies', JSON.stringify(sampleMovies));
-        }
-    }
-
-    // Uncomment to add sample movies on first load
-    // addSampleMovies();
 });
